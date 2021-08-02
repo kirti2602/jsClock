@@ -1,7 +1,8 @@
 let clock= document.getElementById('clock');
-let button = document.getElementById('btn');
+let button1 = document.getElementById('btn-stop');
+let button2 = document.getElementById('btn-start')
 
-button.addEventListener('click', displayTime);
+var liveTime = setInterval(displayTime, 1000);
 
 function displayTime(){
     let date = new Date();
@@ -13,11 +14,14 @@ function displayTime(){
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-
     let time = hours + ': ' + minutes + ': ' + seconds;
-    
-    clock.textContent = time;
-
-    setInterval(displayTime, 1000);
+    clock.textContent = time; 
 }
 
+    button1.addEventListener('click', function(){
+    clearInterval(liveTime);
+    })
+
+    button2.addEventListener('click', function(){
+        liveTime = setInterval(displayTime, 1000);
+    })
